@@ -4,7 +4,7 @@ import { useEditor, BubbleMenu, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 
 const editor = useEditor({
-    content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+    content: '<h1> Title </h1> <p> Start typing... </p>',
     extensions: [
         StarterKit,
     ],
@@ -17,6 +17,7 @@ const editor = useEditor({
         <div>
             <button @click="setPage('home')">Home</button>
         </div>
+
         <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">
             <div class="mouse-overlay">
 
@@ -34,7 +35,7 @@ const editor = useEditor({
                 </button>
             </div>
         </bubble-menu>
-        <editor-content :editor="editor" />
+        <editor-content :editor="editor" style="flex-grow: 1;" />
 
     </div>
 </template>
@@ -43,6 +44,7 @@ const editor = useEditor({
 .note-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
     gap: 4px;
 }
 
@@ -78,10 +80,17 @@ const editor = useEditor({
     background-color: #eee;
 }
 
-.] .tiptap {
-    padding: 4px;
-    border: 1px solid gray;
+.tiptap {
+    padding: 6px;
+    border: none;
     outline: none;
+    height: 100%;
+    background-color: #ddd;
+    cursor: text;
+}
+
+.tiptap:focus {
+    background-color: #fff;
 }
 </style>
   
