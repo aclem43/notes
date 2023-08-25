@@ -1,0 +1,110 @@
+/* Split Css below into sections sperated by comments */
+
+/* Toolbar */
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 0px 4px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+    margin: 0 4px;
+    height: 30px;
+}
+
+.toolbar button {
+    border: none;
+    background-color: #fff;
+    padding: 2px 4px;
+    border-radius: 1px;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+}
+
+.toolbar button.is-active {
+    background-color: #c2c2c2;
+    font-weight: bold;
+}
+
+.toolbar button.is-active:hover {
+    background-color: #b1b1b1;
+}
+
+.toolbar button:hover {
+    background-color: #eee;
+}
+
+/* Note Container */
+
+.note-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 2px;
+}
+
+/* Mouse Overlay Bubble */
+
+.mouse-overlay {
+    font-size: large;
+    background-color: #fff;
+    border-radius: 2px;
+    display: flex;
+    gap: 1px;
+    padding: 1px;
+    border: 1px solid #ccc;
+}
+
+.mouse-overlay button {
+    border: none;
+    background-color: #fff;
+    padding: 2px 4px;
+    border-radius: 1px;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+}
+
+.mouse-overlay button.is-active {
+    background-color: #c2c2c2;
+    font-weight: bold;
+}
+
+.mouse-overlay button.is-active:hover {
+    background-color: #b1b1b1;
+}
+
+.mouse-overlay button:hover {
+    background-color: #eee;
+}
+
+.mouse-overlay button.dropdown {
+    position: relative;
+}
+
+.mouse-overlay button.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+/* Tip Tap */
+
+.tiptap {
+    padding: 6px;
+    border: none;
+    outline: none;
+    height: 100%;
+    cursor: text;
+}
+
+.tiptap:focus {
+    background-color: #fff;
+}
+
+.tiptap a {
+    cursor: pointer;
+}
