@@ -1,6 +1,7 @@
-import { writeTextFile, readTextFile } from "@tauri-apps/api/fs";
+import { readTextFile } from "@tauri-apps/api/fs";
 import { appDataDir } from "@tauri-apps/api/path";
 import { ref, type Ref } from "vue";
+import { saveData } from "./store";
 
 interface Note {
     id: string;
@@ -25,10 +26,7 @@ export const generateId = () => {
 }
 
 export const saveNotes = async () => {
-    await writeTextFile({
-        path: "notes.json",
-        contents: JSON.stringify(notes.value)
-    })
+    await saveData(JSON.stringify(notes.value), "notes")
 }
 
 export const loadNotes = async () => {

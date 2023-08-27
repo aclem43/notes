@@ -1,16 +1,14 @@
-import { appDataDir } from "@tauri-apps/api/path";
-import { exists, createDir, readDir } from "@tauri-apps/api/fs";
+import { BaseDirectory, createDir } from "@tauri-apps/api/fs";
 
 export const initDataFolder = async () => {
-    const path = await appDataDir()
-    const existsValue = exists(path)
-    if (!existsValue) {
-        try {
-            await createDir(path)
-        } catch (error) {
-            console.log(error)
-        }
+    try {
+        await createDir("data", {
+            dir: BaseDirectory.AppData,
+            recursive: true,
+        });
+        console.log("Data folder created");
+    } catch (e) {
+        console.error(e);
     }
-    console.log(await readDir(path))
-    console.log(path)
+
 }

@@ -23,7 +23,7 @@
       "fs": {
         "all": true,
         "scope": [
-          "$APPDATA\\**\\*"
+          "$APPDATA/**/*"
         ],
         "writeFile": true
       }
