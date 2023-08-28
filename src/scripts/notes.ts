@@ -1,9 +1,7 @@
-import { readTextFile } from "@tauri-apps/api/fs";
-import { appDataDir } from "@tauri-apps/api/path";
 import { ref, type Ref } from "vue";
-import { saveData } from "./store";
+import { loadData, saveData } from "./store";
 
-interface Note {
+export interface Note {
     id: string;
     title: string;
     content: string;
@@ -11,14 +9,35 @@ interface Note {
 }
 
 const notes: Ref<Note[]> = ref([])
-
-export const addNote = () => {
+const note: Ref<Note | null> = ref(null)
+export const addNote = (note: Partial<Note>) => {
     notes.value.push({
         id: generateId(),
-        title: "",
-        content: "",
+        title: note.title || "New Note",
+        content: note.content || "",
         dateCreated: new Date()
     })
+}
+
+export const setNote = (n: Note) => {
+    note.value = n
+}
+
+export const getNote = () => {
+    return note
+}
+
+export const deleteNote = (id: string) => {
+    notes.value = notes.value.filter(note => note.id !== id)
+}
+
+export const updateNote = (note: Note) => {
+    const index = notes.value.findIndex(n => n.id === note.id)
+    notes.value[index] = note
+}
+
+export const getNotes = () => {
+    return notes
 }
 
 export const generateId = () => {
@@ -30,7 +49,6 @@ export const saveNotes = async () => {
 }
 
 export const loadNotes = async () => {
-    const path = await appDataDir() + "notes.json"
-    const file = await readTextFile(path)
-    notes.value = JSON.parse(file)
+    const data = await loadData("notes") ?? "[]"
+    notes.value = JSON.parse(data)
 }

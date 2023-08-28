@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import NoteSummary from '../components/NoteSummary.vue';
-import Icon from '../components/Icon.vue';
 import { mdiPlus } from '@mdi/js';
+import Icon from '../components/Icon.vue';
+import NoteSummary from '../components/NoteSummary.vue';
+import { addNote, getNotes } from '../scripts/notes';
 import { setPage } from '../scripts/page';
-const notes = ref([1, 2, 3, 4, 5]);
 
-
+const notes = getNotes()
 </script>
 
 <template>
@@ -15,12 +14,12 @@ const notes = ref([1, 2, 3, 4, 5]);
     </div>
     <div class="search-notes">
         <input type="text" placeholder="Search " />
-        <div class="note-new">
+        <div class="note-new" @click="addNote({})">
             <Icon :size="32" style="color: black;" :icon="mdiPlus" />
         </div>
     </div>
     <div class="note-summary-list" v-for="note in notes">
-        <NoteSummary :test="note" />
+        <NoteSummary :note="note" />
     </div>
 </template>
 

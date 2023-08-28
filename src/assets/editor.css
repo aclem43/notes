@@ -41,6 +41,12 @@
     background-color: #eee;
 }
 
+.toolbar button:disabled {
+    background-color: #fff;
+    color: #ccc;
+    cursor: auto;
+}
+
 .toolbar div.group {
     display: flex;
     flex-direction: row;

@@ -8,17 +8,35 @@ import History from '@tiptap/extension-history';
 import Italic from '@tiptap/extension-italic';
 import Link from '@tiptap/extension-link';
 import Paragraph from '@tiptap/extension-paragraph';
+import Placeholder from '@tiptap/extension-placeholder';
 import Strike from '@tiptap/extension-strike';
 import Text from '@tiptap/extension-text';
 import Typography from '@tiptap/extension-typography';
 import { BubbleMenu, EditorContent, useEditor } from '@tiptap/vue-3';
+import { onMounted } from 'vue';
 import "../assets/editor.css";
 import Icon from '../components/Icon.vue';
+import { getNote, saveNotes, updateNote } from '../scripts/notes';
+
+const note = getNote()
+
+const CustomDocument = Document.extend({
+    content: 'heading block*',
+})
 
 const editor = useEditor({
     content: '<h1> Title </h1> <p> Start typing... </p>',
     extensions: [
-        Document,
+        CustomDocument,
+        Placeholder.configure({
+            placeholder: ({ node }) => {
+                if (node.type.name === 'heading') {
+                    return 'Title?'
+                }
+
+                return 'Content?'
+            },
+        }),
         Typography,
         Heading,
         Paragraph,
@@ -36,9 +54,30 @@ const editor = useEditor({
     ],
 })
 
+
 const isHeaderActive = () => {
     if (editor.value == undefined) return false
     return editor.value.isActive('heading', { level: 1 }) || editor.value.isActive('heading', { level: 2 })
+}
+
+onMounted(() => {
+    if (note.value == null) return
+    editor.value?.commands.setContent(note.value.content)
+})
+
+const save = async () => {
+    if (note.value == null) return
+    const rx = /1>(.*?)<\/h1>/
+    note.value.title = (editor.value?.getHTML() ?? '<h1>Empty Title</h1>').match(rx)?.[1] ?? 'Empty title'
+    note.value.content = editor.value?.getHTML() ?? ''
+    updateNote(note.value)
+    await saveNotes()
+    console.log(note.value)
+}
+
+const isDifferent = () => {
+    if (note.value == null) return false
+    return note.value.content != editor.value?.getHTML()
 }
 
 </script>
@@ -86,8 +125,8 @@ const isHeaderActive = () => {
                 </button>
             </div>
             <div class="group">
-                <button>
-                    <Icon :icon="mdiFloppy"></Icon>
+                <button :disabled="!isDifferent()" @click="save">
+                    <Icon :icon="mdiFloppy"> </Icon>
                 </button>
             </div>
         </div>
@@ -114,5 +153,13 @@ const isHeaderActive = () => {
     </div>
 </template>
 
-<style ></style>
+<style >
+.tiptap .is-empty::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #ced4da;
+    pointer-events: none;
+    height: 0;
+}
+</style>
   

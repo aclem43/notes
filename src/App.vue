@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { initDataFolder } from './scripts/init';
-import { saveNotes } from './scripts/notes';
+import { loadNotes } from './scripts/notes';
 import page from './scripts/page';
 onMounted(async () => {
     await initDataFolder()
-    await saveNotes()
+    await loadNotes()
 })
 
 </script>

@@ -1,10 +1,25 @@
+<script setup lang="ts">
+import { Note, setNote } from '../scripts/notes';
+import { setPage } from '../scripts/page';
+
+
+const props = defineProps<{
+    note: Note
+}>()
+
+const open = () => {
+    setNote(props.note)
+    setPage('note')
+}
+
+</script>
+
 <template>
-    <div class="note-summary">
-        <div class="note-summary-title">
-            Note
+    <div class="note-summary" @click="open">
+        <div class="note-summary-title" v-html="props.note.title">
         </div>
         <div>
-            Note first line.
+            {{ props.note.content }}
         </div>
     </div>
 </template>
