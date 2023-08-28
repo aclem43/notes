@@ -10,7 +10,7 @@ const notes = getNotes()
 
 <template>
     <div>
-        <button @click="setPage('note')">Test Note</button>
+        <button @click="setPage('editor')">Test Note</button>
     </div>
     <div class="search-notes">
         <input type="text" placeholder="Search " />

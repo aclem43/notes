@@ -1,4 +1,4 @@
-/* Split Css below into sections sperated by comments */
+@import url("./var.css");
 
 /* Toolbar */
 
@@ -7,15 +7,15 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 0px 4px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: 2px;
-    background-color: #fff;
+    background-color: var(--background-secondary);
     margin: 0 4px;
 }
 
 .toolbar button {
     border: none;
-    background-color: #fff;
+    background-color: var(--background-secondary);
     padding: 2px 4px;
     border-radius: 1px;
     font-size: 12px;
@@ -29,20 +29,20 @@
 
 
 .toolbar button.is-active {
-    background-color: #c2c2c2;
+    background-color: var(--hover-secondary);
     font-weight: bold;
 }
 
 .toolbar button.is-active:hover {
-    background-color: #b1b1b1;
+    background-color: var(--hover-secondary);
 }
 
 .toolbar button:hover {
-    background-color: #eee;
+    background-color: var(--hover);
 }
 
 .toolbar button:disabled {
-    background-color: #fff;
+    background-color: var(--background-secondary);
     color: #ccc;
     cursor: auto;
 }
@@ -89,23 +89,24 @@
     flex-direction: column;
     height: 100%;
     gap: 2px;
+    padding: 4px;
 }
 
 /* Mouse Overlay Bubble */
 
 .mouse-overlay {
     font-size: large;
-    background-color: #fff;
+    background-color: var(--background-secondary);
     border-radius: 2px;
     display: flex;
     gap: 1px;
     padding: 1px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
 }
 
 .mouse-overlay button {
     border: none;
-    background-color: #fff;
+    background-color: var(--background-secondary);
     padding: 2px 4px;
     border-radius: 1px;
     font-size: 12px;
@@ -114,16 +115,16 @@
 }
 
 .mouse-overlay button.is-active {
-    background-color: #c2c2c2;
+    background-color: var(--hover-secondary);
     font-weight: bold;
 }
 
 .mouse-overlay button.is-active:hover {
-    background-color: #b1b1b1;
+    background-color: var(--hover-secondary);
 }
 
 .mouse-overlay button:hover {
-    background-color: #eee;
+    background-color: var(--hover);
 }
 
 
@@ -139,16 +140,26 @@
     cursor: text;
 }
 
+.tiptap .is-empty::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: var(--text-secondary);
+    pointer-events: none;
+    height: 0;
+}
+
 .tiptap:focus {
-    background-color: #fff;
+    background-color: var(--background)
 }
 
 .tiptap a {
     cursor: pointer;
 }
 
+
+
 /* Utilty */
 .divider {
-    border-left: 1px solid #ccc;
+    border-left: 1px solid var(--border);
     margin: 4px 0;
 }

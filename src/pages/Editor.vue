@@ -83,8 +83,6 @@ const isDifferent = () => {
 </script>
 <template>
     <div class="note-container">
-        <div>Note</div>
-
         <div v-if="editor != undefined" class="toolbar">
             <div class="group">
                 <div class="dropdown">
@@ -152,14 +150,3 @@ const isDifferent = () => {
 
     </div>
 </template>
-
-<style >
-.tiptap .is-empty::before {
-    content: attr(data-placeholder);
-    float: left;
-    color: #ced4da;
-    pointer-events: none;
-    height: 0;
-}
-</style>
-  

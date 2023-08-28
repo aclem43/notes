@@ -1,6 +1,6 @@
 import { shallowRef } from 'vue';
+import Editor from '../pages/Editor.vue';
 import Home from '../pages/Home.vue';
-import Note from '../pages/Note.vue';
 
 interface Pages {
     [key: string]: {
@@ -12,8 +12,8 @@ const pages: Pages = {
     home: {
         component: Home
     },
-    note: {
-        component: Note
+    editor: {
+        component: Editor
     }
 
 }

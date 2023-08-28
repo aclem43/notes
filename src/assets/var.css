@@ -1,0 +1,17 @@
+html {
+    --background: #fff;
+    --background-secondary: #f8f8f8;
+
+    --hover: #eee;
+    --hover-secondary: #ddd;
+
+    --text: #333;
+    --text-secondary: #666;
+
+    --border: #ccc;
+    --border-secondary: #ddd;
+
+    --primary: #007bff;
+    --primary-hover: #0069d9;
+
+}
