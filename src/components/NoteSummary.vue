@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import '../assets/note-summary.css';
 import { Note, setNote } from '../scripts/notes';
 import { setPage } from '../scripts/page';
-
 
 const props = defineProps<{
     note: Note
@@ -23,20 +23,3 @@ const open = () => {
         </div>
     </div>
 </template>
-
-<style scoped>
-.note-summary {
-    padding: 4px;
-    border-radius: 4px;
-    border: 1px solid gray;
-}
-
-.note-summary:hover {
-    cursor: pointer;
-    background-color: #eee;
-}
-
-.note-summary-title {
-    font-weight: bold;
-}
-</style>

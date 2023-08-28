@@ -1,0 +1,18 @@
+@import url("./var.css");
+
+
+.note-summary {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background-color: var(--background-secondary);
+}
+
+.note-summary:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.note-summary-title {
+    font-weight: bold;
+}

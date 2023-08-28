@@ -21,8 +21,9 @@ const pages: Pages = {
 
 const page = shallowRef(pages.home);
 
-export function setPage(pageName: string) {
+export const setPage = (pageName: keyof Pages) => {
     page.value = pages[pageName];
+    console.log(page.value);
 }
 
 export default page;

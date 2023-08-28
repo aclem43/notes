@@ -5,12 +5,17 @@ import { setPage } from '../scripts/page';
 import { switchTheme } from '../scripts/theme';
 import Icon from './Icon.vue';
 
+const home = () => {
+    setPage('home')
+    console.log('home')
+}
+
 </script>
 
 <template>
     <div class="sidebar">
         <div class="group">
-            <button @click="setPage('home')">
+            <button @click="home">
                 <Icon :icon="mdiHome" />
             </button>
             <button>
