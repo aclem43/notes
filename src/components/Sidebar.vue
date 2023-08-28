@@ -2,6 +2,7 @@
 import { mdiCog, mdiHome, mdiPlus, mdiThemeLightDark } from '@mdi/js';
 import '../assets/sidebar.css';
 import { setPage } from '../scripts/page';
+import { switchTheme } from '../scripts/theme';
 import Icon from './Icon.vue';
 
 </script>
@@ -18,7 +19,7 @@ import Icon from './Icon.vue';
 
         </div>
         <div class="group">
-            <button>
+            <button @click="switchTheme()">
                 <Icon :icon="mdiThemeLightDark" />
             </button>
             <button>

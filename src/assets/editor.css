@@ -43,7 +43,7 @@
 
 .toolbar button:disabled {
     background-color: var(--background-secondary);
-    color: #ccc;
+    color: var(--text-secondary);
     cursor: auto;
 }
 
@@ -63,11 +63,11 @@
 .toolbar div.dropdown div.dropdown-content {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: var(--background-secondary);
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 100;
     border-radius: 2px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     padding: 2px;
     margin-top: 2px;
     margin-left: -2px;
@@ -138,6 +138,7 @@
     outline: none;
     height: 100%;
     cursor: text;
+    color: var(--text);
 }
 
 .tiptap .is-empty::before {
