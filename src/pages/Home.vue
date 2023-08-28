@@ -3,15 +3,11 @@ import { mdiPlus } from '@mdi/js';
 import Icon from '../components/Icon.vue';
 import NoteSummary from '../components/NoteSummary.vue';
 import { addNote, getNotes } from '../scripts/notes';
-import { setPage } from '../scripts/page';
 
 const notes = getNotes()
 </script>
 
 <template>
-    <div>
-        <button @click="setPage('editor')">Test Note</button>
-    </div>
     <div class="search-notes">
         <input type="text" placeholder="Search " />
         <div class="note-new" @click="addNote({})">

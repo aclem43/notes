@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const open = () => {
     setNote(props.note)
-    setPage('note')
+    setPage('editor')
 }
 
 </script>

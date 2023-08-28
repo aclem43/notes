@@ -34,7 +34,7 @@ const editor = useEditor({
                     return 'Title?'
                 }
 
-                return 'Content?'
+                return '...'
             },
         }),
         Typography,
