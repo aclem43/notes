@@ -5,12 +5,16 @@ import NoteSummary from '../components/NoteSummary.vue';
 import { addNote, getNotes } from '../scripts/notes';
 
 const notes = getNotes()
+
+const newNote = async () => {
+    await addNote({})
+}
 </script>
 
 <template>
     <div class="search-notes">
         <input type="text" placeholder="Search " />
-        <div class="note-new" @click="addNote({})">
+        <div class="note-new" @click="newNote">
             <Icon :size="32" style="color: black;" :icon="mdiPlus" />
         </div>
     </div>

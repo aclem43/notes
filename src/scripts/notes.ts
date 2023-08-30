@@ -5,18 +5,20 @@ export interface Note {
     id: string;
     title: string;
     content: string;
-    dateCreated: Date;
+    textOnly?: string;
+    dateCreated: Date | string;
 }
 
 const notes: Ref<Note[]> = ref([])
 const note: Ref<Note | null> = ref(null)
-export const addNote = (note: Partial<Note>) => {
+export const addNote = async (note: Partial<Note>) => {
     notes.value.push({
         id: generateId(),
         title: note.title || "New Note",
         content: note.content || "",
-        dateCreated: new Date()
+        dateCreated: new Date(),
     })
+    await saveNotes()
 }
 
 export const setNote = (n: Note) => {
@@ -45,10 +47,28 @@ export const generateId = () => {
 }
 
 export const saveNotes = async () => {
-    await saveData(JSON.stringify(notes.value), "notes")
+
+    const notesMap: { id: string }[] = []
+
+    for (const note of notes.value) {
+        notesMap.push({
+            id: note.id
+        })
+    }
+
+    await saveData(JSON.stringify(notesMap), "notes")
+
+    for (const note of notes.value) {
+        await saveData(JSON.stringify(note), note.id)
+    }
 }
 
 export const loadNotes = async () => {
     const data = await loadData("notes") ?? "[]"
-    notes.value = JSON.parse(data)
+    const notesMap: { id: string }[] = JSON.parse(data)
+
+    for (const note of notesMap) {
+        const noteData = await loadData(note.id) ?? "{}"
+        notes.value.push(JSON.parse(noteData))
+    }
 }

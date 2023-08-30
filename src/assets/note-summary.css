@@ -13,6 +13,17 @@
     background-color: var(--hover);
 }
 
+.note-summary-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .note-summary-title {
     font-weight: bold;
+}
+
+.note-summary-date {
+    font-size: 0.8em;
+    color: var(--text-secondary);
 }

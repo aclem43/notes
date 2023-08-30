@@ -70,6 +70,7 @@ const save = async () => {
     const rx = /1>(.*?)<\/h1>/
     note.value.title = (editor.value?.getHTML() ?? '<h1>Empty Title</h1>').match(rx)?.[1] ?? 'Empty title'
     note.value.content = editor.value?.getHTML() ?? ''
+    note.value.textOnly = editor.value?.getText() ?? ''
     updateNote(note.value)
     await saveNotes()
     console.log(note.value)
