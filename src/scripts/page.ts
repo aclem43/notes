@@ -1,6 +1,7 @@
 import { shallowRef } from 'vue';
 import Editor from '../pages/Editor.vue';
 import Home from '../pages/Home.vue';
+import Settings from '../pages/Settings.vue';
 
 interface Pages {
     [key: string]: {
@@ -14,6 +15,9 @@ const pages: Pages = {
     },
     editor: {
         component: Editor
+    },
+    settings: {
+        component: Settings
     }
 
 }
@@ -23,7 +27,6 @@ const page = shallowRef(pages.home);
 
 export const setPage = (pageName: keyof Pages) => {
     page.value = pages[pageName];
-    console.log(page.value);
 }
 
 export default page;

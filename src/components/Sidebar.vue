@@ -7,7 +7,10 @@ import Icon from './Icon.vue';
 
 const home = () => {
     setPage('home')
-    console.log('home')
+}
+
+const settings = () => {
+    setPage('settings')
 }
 
 </script>
@@ -27,7 +30,7 @@ const home = () => {
             <button @click="switchTheme()">
                 <Icon :icon="mdiThemeLightDark" />
             </button>
-            <button>
+            <button @click="settings">
                 <Icon :icon="mdiCog" />
             </button>
         </div>
