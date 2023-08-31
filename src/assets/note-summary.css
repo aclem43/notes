@@ -42,8 +42,10 @@
     outline: none;
     border: none;
     background-color: transparent;
+    color: var(--text);
 }
 
 .note-summary-button:hover {
     cursor: pointer;
+    color: var(--text-secondary);
 }
