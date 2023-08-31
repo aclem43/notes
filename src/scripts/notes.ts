@@ -6,6 +6,7 @@ export interface Note {
     title: string;
     content: string;
     textOnly?: string;
+    pinned?: boolean;
     dateCreated: Date | string;
 }
 
@@ -36,6 +37,15 @@ export const deleteNote = (id: string) => {
 export const updateNote = (note: Note) => {
     const index = notes.value.findIndex(n => n.id === note.id)
     notes.value[index] = note
+}
+
+export const pinNote = (id: string) => {
+    const index = notes.value.findIndex(note => note.id === id)
+    notes.value[index].pinned = !notes.value[index].pinned
+}
+
+export const getNoteById = (id: string) => {
+    return notes.value.find(note => note.id === id)
 }
 
 export const getNotes = () => {
