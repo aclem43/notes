@@ -69,12 +69,13 @@
     border-radius: 2px;
     border: 1px solid var(--border);
     padding: 2px;
-    margin-top: 2px;
     margin-left: -2px;
     font-size: 12px;
     outline: none;
     text-align: center;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 2px;
+    align-content: center;
 }
 
 .toolbar div.dropdown:hover div.dropdown-content {

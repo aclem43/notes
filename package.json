@@ -30,6 +30,7 @@
     "@tiptap/extension-placeholder": "^2.1.7",
     "@tiptap/extension-strike": "^2.1.7",
     "@tiptap/extension-text": "^2.1.7",
+    "@tiptap/extension-text-align": "^2.1.7",
     "@tiptap/extension-typography": "^2.1.7",
     "@tiptap/pm": "^2.1.6",
     "@tiptap/vue-3": "^2.1.6",

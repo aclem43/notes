@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { mdiAlphaH, mdiFloppy, mdiFormatBold, mdiFormatHeader1, mdiFormatHeader2, mdiFormatItalic, mdiFormatStrikethrough, mdiRedo, mdiUndo } from '@mdi/js';
+import { mdiAlphaH, mdiFloppy, mdiFormatAlignCenter, mdiFormatAlignJustify, mdiFormatAlignLeft, mdiFormatAlignRight, mdiFormatBold, mdiFormatHeader1, mdiFormatHeader2, mdiFormatItalic, mdiFormatStrikethrough, mdiRedo, mdiUndo } from '@mdi/js';
 import Bold from '@tiptap/extension-bold';
 import BulletList from '@tiptap/extension-bullet-list';
 import Code from '@tiptap/extension-code';
@@ -15,6 +15,7 @@ import Paragraph from '@tiptap/extension-paragraph';
 import Placeholder from '@tiptap/extension-placeholder';
 import Strike from '@tiptap/extension-strike';
 import Text from '@tiptap/extension-text';
+import TextAlign from '@tiptap/extension-text-align';
 import Typography from '@tiptap/extension-typography';
 import { BubbleMenu, EditorContent, useEditor } from '@tiptap/vue-3';
 import { onMounted } from 'vue';
@@ -22,7 +23,6 @@ import "../assets/editor.css";
 import Icon from '../components/Icon.vue';
 import { getNote, saveNotes, updateNote } from '../scripts/notes';
 const note = getNote()
-
 const CustomDocument = Document.extend({
     content: 'heading block*',
 })
@@ -50,6 +50,9 @@ const editor = useEditor({
         BulletList,
         OrderedList,
         ListItem,
+        TextAlign.configure({
+            types: ['heading', 'paragraph'],
+        }),
         Image.configure({
             inline: true,
             allowBase64: true,
@@ -109,6 +112,29 @@ const isDifferent = () => {
                         <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
                             :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
                             <Icon :icon="mdiFormatHeader2"></Icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button>
+                        <Icon :icon="mdiFormatAlignCenter" :size="32"></Icon>
+                    </button>
+                    <div class="dropdown-content">
+                        <button @click="editor.chain().focus().setTextAlign('left').run()"
+                            :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }">
+                            <Icon :icon="mdiFormatAlignLeft"></Icon>
+                        </button>
+                        <button @click="editor.chain().focus().setTextAlign('center').run()"
+                            :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }">
+                            <Icon :icon="mdiFormatAlignCenter"></Icon>
+                        </button>
+                        <button @click="editor.chain().focus().setTextAlign('right').run()"
+                            :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
+                            <Icon :icon="mdiFormatAlignRight"></Icon>
+                        </button>
+                        <button @click="editor.chain().focus().setTextAlign('justify').run()"
+                            :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
+                            <Icon :icon="mdiFormatAlignJustify"></Icon>
                         </button>
                     </div>
                 </div>
