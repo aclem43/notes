@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { mdiAlphaH, mdiFloppy, mdiFormatBold, mdiFormatHeader1, mdiFormatHeader2, mdiFormatItalic, mdiFormatStrikethrough, mdiRedo, mdiUndo } from '@mdi/js';
 import Bold from '@tiptap/extension-bold';
+import BulletList from '@tiptap/extension-bullet-list';
 import Code from '@tiptap/extension-code';
 import Document from '@tiptap/extension-document';
 import Heading from '@tiptap/extension-heading';
 import History from '@tiptap/extension-history';
+import Image from '@tiptap/extension-image';
 import Italic from '@tiptap/extension-italic';
 import Link from '@tiptap/extension-link';
+import ListItem from '@tiptap/extension-list-item';
+import OrderedList from "@tiptap/extension-ordered-list";
 import Paragraph from '@tiptap/extension-paragraph';
 import Placeholder from '@tiptap/extension-placeholder';
 import Strike from '@tiptap/extension-strike';
@@ -17,7 +21,6 @@ import { onMounted } from 'vue';
 import "../assets/editor.css";
 import Icon from '../components/Icon.vue';
 import { getNote, saveNotes, updateNote } from '../scripts/notes';
-
 const note = getNote()
 
 const CustomDocument = Document.extend({
@@ -44,6 +47,13 @@ const editor = useEditor({
         Code,
         Italic,
         Bold,
+        BulletList,
+        OrderedList,
+        ListItem,
+        Image.configure({
+            inline: true,
+            allowBase64: true,
+        }),
         History.configure({
             depth: 10,
         }),
