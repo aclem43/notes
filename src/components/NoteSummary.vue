@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { mdiPin, mdiPinOutline } from '@mdi/js';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
+import { mdiDotsVertical, mdiPin, mdiPinOutline, mdiTrashCan } from '@mdi/js';
 import '../assets/note-summary.css';
-import { Note, saveNotes, setNote } from '../scripts/notes';
+import { Note, deleteNote, saveNotes, setNote } from '../scripts/notes';
 import { setPage } from '../scripts/page';
 import Icon from './Icon.vue';
-
 const props = defineProps<{
     note: Note
 }>()
@@ -19,6 +19,11 @@ const pin = async () => {
     setNote({
         ...props.note
     })
+    await saveNotes()
+}
+
+const del = async () => {
+    deleteNote(props.note.id)
     await saveNotes()
 }
 
@@ -51,10 +56,22 @@ const dateTime = () => {
     <div class="note-summary" @click="open">
         <div class="note-summary-title-container">
             <div class="note-summary-title" v-html="props.note.title" />
-            <div>
+            <div class="summary-group">
                 <button class="note-summary-button" @click.stop="pin">
                     <Icon :size="16" :icon="note.pinned ? mdiPin : mdiPinOutline" />
                 </button>
+                <Popover class="summary-menu">
+                    <PopoverButton class="note-summary-button">
+                        <Icon :size="16" :icon="mdiDotsVertical" />
+                    </PopoverButton>
+
+                    <PopoverPanel class="summary-menu-panel">
+                        <button class="note-summary-button" @click.stop="del">
+                            <Icon :size="16" :icon="mdiTrashCan" />
+
+                        </button>
+                    </PopoverPanel>
+                </Popover>
             </div>
         </div>
         <div class="note-summary-date"> {{ dateTime() }}</div>

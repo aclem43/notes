@@ -16,7 +16,6 @@
 .note-summary-title-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .note-summary-title {
@@ -48,4 +47,27 @@
 .note-summary-button:hover {
     cursor: pointer;
     color: var(--text-secondary);
+}
+
+.summary-menu {
+    display: relative;
+}
+
+.summary-menu-panel {
+    position: absolute;
+    right: 0;
+    margin: 0px 4px;
+    z-index: 100;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-group {
+    display: flex;
+    margin-bottom: 0.5rem;
 }

@@ -12,14 +12,17 @@ export interface Note {
 
 const notes: Ref<Note[]> = ref([])
 const note: Ref<Note | null> = ref(null)
+
 export const addNote = async (note: Partial<Note>) => {
-    notes.value.push({
+    const n = {
         id: generateId(),
         title: note.title || "New Note",
         content: note.content || "",
         dateCreated: new Date(),
-    })
+    }
+    notes.value.push(n)
     await saveNotes()
+    return n
 }
 
 export const setNote = (n: Note) => {
