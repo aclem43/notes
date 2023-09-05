@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "notes",
-    "version": "0.0.0"
+    "version": "0.0.1"
   },
   "tauri": {
     "allowlist": {
@@ -26,6 +26,9 @@
           "$APPDATA/**/*"
         ],
         "writeFile": true
+      },
+      "app": {
+        "all": true
       }
     },
     "bundle": {
