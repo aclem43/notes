@@ -23,6 +23,7 @@ import "../assets/editor.css";
 import Icon from '../components/Icon.vue';
 import { getNote, saveNotes, updateNote } from '../scripts/notes';
 const note = getNote()
+
 const CustomDocument = Document.extend({
     content: 'heading block*',
 })
@@ -30,7 +31,6 @@ const CustomDocument = Document.extend({
 const editor = useEditor({
     content: '<h1> Title </h1> <p> Start typing... </p>',
     extensions: [
-        CustomDocument,
         Placeholder.configure({
             placeholder: ({ node }) => {
                 if (node.type.name === 'heading') {
@@ -64,7 +64,7 @@ const editor = useEditor({
         Link.configure({
             openOnClick: false,
         }),
-
+        CustomDocument
     ],
 })
 
@@ -88,6 +88,13 @@ const save = async () => {
     updateNote(note.value)
     await saveNotes()
     console.log(note.value)
+}
+
+const saveOnKeybind = async (e: KeyboardEvent) => {
+    if (e.ctrlKey && e.key == 's') {
+        e.preventDefault()
+        await save()
+    }
 }
 
 const isDifferent = () => {
@@ -184,7 +191,7 @@ const isDifferent = () => {
 
             </div>
         </bubble-menu>
-        <editor-content :editor="editor" style="flex-grow: 1;" />
+        <editor-content :editor="editor" style="flex-grow: 1;" @keydown="saveOnKeybind($event)" />
 
     </div>
 </template>
