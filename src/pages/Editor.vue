@@ -37,7 +37,7 @@ const editor = useEditor({
                     return 'Title?'
                 }
 
-                return '...'
+                return ''
             },
         }),
         Typography,
@@ -46,6 +46,7 @@ const editor = useEditor({
         Text,
         Code,
         Italic,
+        Strike,
         Bold,
         BulletList,
         OrderedList,
@@ -63,7 +64,7 @@ const editor = useEditor({
         Link.configure({
             openOnClick: false,
         }),
-        Strike
+
     ],
 })
 

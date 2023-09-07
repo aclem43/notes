@@ -55,7 +55,7 @@ const dateTime = () => {
 <template>
     <div class="note-summary" @click="open">
         <div class="note-summary-title-container">
-            <div class="note-summary-title" v-html="props.note.title" />
+            <div class="note-summary-title" v-text="props.note.title" />
             <div class="summary-group">
                 <button class="note-summary-button" @click.stop="pin">
                     <Icon :size="16" :icon="note.pinned ? mdiPin : mdiPinOutline" />
