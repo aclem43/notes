@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { mdiCog, mdiHome, mdiPlus, mdiThemeLightDark } from '@mdi/js';
 import '../assets/sidebar.css';
+import { addNote, setNote } from '../scripts/notes';
 import { setPage } from '../scripts/page';
 import { switchTheme } from '../scripts/theme';
 import Icon from './Icon.vue';
-
 const home = () => {
     setPage('home')
 }
 
 const settings = () => {
     setPage('settings')
+}
+
+const newNote = async () => {
+    const n = await addNote({})
+    setNote(n)
+    setPage('editor')
 }
 
 </script>
@@ -21,7 +27,7 @@ const settings = () => {
             <button @click="home">
                 <Icon :icon="mdiHome" />
             </button>
-            <button>
+            <button @click="newNote">
                 <Icon :icon="mdiPlus" />
             </button>
 

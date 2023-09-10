@@ -26,7 +26,16 @@ const pages: Pages = {
 const page = shallowRef(pages.home);
 
 export const setPage = (pageName: keyof Pages) => {
+    if (!pages[pageName]) {
+        throw new Error(`Page ${pageName} does not exist`);
+    }
+    if (page.value === pages[pageName]) {
+        page.value = pages.home;
+    }
+
     page.value = pages[pageName];
 }
+
+
 
 export default page;
