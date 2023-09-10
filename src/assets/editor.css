@@ -158,7 +158,18 @@
     cursor: pointer;
 }
 
+.tiptap ul,
+ol {
+    margin-left: 20px;
+}
 
+.tiptap ul {
+    list-style-type: disc;
+}
+
+.tiptap ol {
+    list-style-type: decimal;
+}
 
 /* Utilty */
 .divider {
