@@ -1,16 +1,18 @@
 html {
-    --background: #fff;
-    --background-secondary: #f8f8f8;
+    --background: #f4f5f5;
+    --background-secondary: #fff;
 
     --hover: #eee;
     --hover-secondary: #ddd;
 
-    --text: #333;
+    --text: #270c02;
     --text-secondary: #666;
 
-    --border: #ccc;
+    --border: #043a4f;
     --border-secondary: #ddd;
 
-    --primary: #007bff;
+    --primary: #12b3f3;
     --primary-hover: #0069d9;
+
+    --secondary: #cdbdfa;
 }

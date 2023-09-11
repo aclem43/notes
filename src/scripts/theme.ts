@@ -2,37 +2,42 @@ import { Ref, ref } from "vue";
 
 const themes = {
     light: {
-        '--background': '#fff',
+        '--background': '#f4f5f5',
         '--background-secondary': '#f8f8f8',
 
         '--hover': '#eee',
         '--hover-secondary': '#ddd',
 
-        '--text': '#333',
+        '--text': '#270c02',
         '--text-secondary': '#666',
 
-        '--border': '#ccc',
+        '--border': '#043a4f',
         '--border-secondary': '#ddd',
 
-        '--primary': '#007bff',
+        '--primary': '#12b3f3',
         '--primary-hover': '#0069d9',
+
+        "--secondary": "#cdbdfa"
 
     },
     dark: {
-        '--background': '#333',
+        '--background': '#09021d',
         '--background-secondary': '#444',
 
         '--hover': '#555',
         '--hover-secondary': '#666',
 
-        '--text': '#fff',
-        '--text-secondary': '$666',
+        '--text': ' #fef4f0',
+        '--text-secondary': '#ddd',
 
-        '--border': '#555',
+        '--border': '#043a4f',
         '--border-secondary': '#666',
 
-        '--primary': '#007bff',
+        '--primary': '#12b3f3',
         '--primary-hover': '#0069d9',
+
+        '--secondary': '#09021d'
+
     }
 }
 
@@ -51,3 +56,5 @@ export const switchTheme = () => {
     currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light';
     setTheme(currentTheme.value);
 }
+
+
