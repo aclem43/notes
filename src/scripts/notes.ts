@@ -8,6 +8,7 @@ export interface Note {
     textOnly?: string;
     pinned?: boolean;
     dateCreated: Date | string;
+    dateModified?: Date | string;
 }
 
 const notes: Ref<Note[]> = ref([])

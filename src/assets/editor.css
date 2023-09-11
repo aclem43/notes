@@ -25,6 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--text)
 }
 
 
@@ -127,9 +128,6 @@
 .mouse-overlay button:hover {
     background-color: var(--hover);
 }
-
-
-
 
 /* Tip Tap */
 

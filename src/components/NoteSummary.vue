@@ -42,11 +42,48 @@ const firstLine = () => {
     return val
 }
 
-const dateTime = () => {
+const dateTimeCreated = () => {
     if (typeof props.note.dateCreated == 'string') {
         return new Date(props.note.dateCreated).toLocaleString()
     } else {
         return props.note.dateCreated.toLocaleString()
+    }
+}
+
+const dateTimeModified = () => {
+    const date = new Date()
+    let dateModified = props.note.dateModified
+    if (dateModified == undefined) {
+        return ""
+    }
+    if (typeof dateModified == 'string') {
+        dateModified = new Date(dateModified)
+    }
+    const diff = date.getTime() - dateModified.getTime()
+    const diffSeconds = diff / 1000
+    const diffMinutes = diffSeconds / 60
+    const diffHours = diffMinutes / 60
+    const diffDays = diffHours / 24
+    const diffWeeks = diffDays / 7
+    const diffMonths = diffWeeks / 4
+    const diffYears = diffMonths / 12
+
+    if (diffYears >= 1) {
+        return `${Math.floor(diffYears)}y`
+    } else if (diffMonths >= 1) {
+        return `${Math.floor(diffMonths)}mo`
+    } else if (diffWeeks >= 1) {
+        return `${Math.floor(diffWeeks)}w`
+    } else if (diffDays >= 1) {
+        return `${Math.floor(diffDays)}d`
+    } else if (diffHours >= 1) {
+        return `${Math.floor(diffHours)}h`
+    } else if (diffMinutes >= 1) {
+        return `${Math.floor(diffMinutes)}m`
+    } else if (diffSeconds >= 1) {
+        return `${Math.floor(diffSeconds)}s`
+    } else {
+        return "now"
     }
 }
 
@@ -74,7 +111,14 @@ const dateTime = () => {
                 </Popover>
             </div>
         </div>
-        <div class="note-summary-date"> {{ dateTime() }}</div>
+        <div class="note-summary-container ">
+            <div class="note-summary-date">
+                {{ dateTimeCreated() }}
+            </div>
+            <div class="note-summary-date" v-if="dateTimeModified() !== ''">
+                Last Modified: {{ dateTimeModified() }}
+            </div>
+        </div>
         <div class="note-summary-content">
             {{ firstLine() }}
         </div>

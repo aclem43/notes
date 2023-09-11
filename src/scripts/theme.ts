@@ -26,7 +26,7 @@ const themes = {
         '--hover-secondary': '#666',
 
         '--text': '#fff',
-        '--text-secondary': '#ccc',
+        '--text-secondary': '$666',
 
         '--border': '#555',
         '--border-secondary': '#666',

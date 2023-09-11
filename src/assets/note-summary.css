@@ -26,6 +26,11 @@
 }
 
 
+.note-summary-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .note-summary-date {
     font-size: 0.7em;
     color: var(--text-secondary);
