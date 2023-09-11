@@ -1,4 +1,4 @@
-import { BaseDirectory, readTextFile, writeFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, readTextFile, removeFile, writeFile } from "@tauri-apps/api/fs";
 
 export const saveData = async (data: string, location: string) => {
     try {
@@ -27,6 +27,19 @@ export const loadData = async (location: string) => {
         return data;
     }
     catch (e) {
+        console.log(e);
+    }
+}
+
+export const deleteData = async (location: string) => {
+    try {
+        await removeFile(
+            `.\\data\\${location}.json`,
+            {
+                dir: BaseDirectory.AppData,
+            },
+        );
+    } catch (e) {
         console.log(e);
     }
 }

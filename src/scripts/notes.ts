@@ -1,5 +1,5 @@
 import { ref, type Ref } from "vue";
-import { loadData, saveData } from "./store";
+import { deleteData, loadData, saveData } from "./store";
 
 export interface Note {
     id: string;
@@ -33,8 +33,9 @@ export const getNote = () => {
     return note
 }
 
-export const deleteNote = (id: string) => {
+export const deleteNote = async (id: string) => {
     notes.value = notes.value.filter(note => note.id !== id)
+    await deleteData(id)
 }
 
 export const updateNote = (note: Note) => {
