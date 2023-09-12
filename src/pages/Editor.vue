@@ -21,7 +21,8 @@ import { BubbleMenu, EditorContent, useEditor } from '@tiptap/vue-3';
 import { onMounted } from 'vue';
 import "../assets/editor.css";
 import Icon from '../components/Icon.vue';
-import { getNote, saveNotes, updateNote } from '../scripts/notes';
+import { getNote } from '../scripts/note';
+import { saveNotes, updateNote } from '../scripts/notes';
 const note = getNote()
 
 const CustomDocument = Document.extend({

@@ -2,7 +2,8 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue';
 import { mdiDotsVertical, mdiPin, mdiPinOutline, mdiTrashCan } from '@mdi/js';
 import '../assets/note-summary.css';
-import { Note, deleteNote, saveNotes, setNote } from '../scripts/notes';
+import { setNote, type Note } from '../scripts/note';
+import { deleteNote, saveNotes } from '../scripts/notes';
 import { setPage } from '../scripts/page';
 import Icon from './Icon.vue';
 const props = defineProps<{

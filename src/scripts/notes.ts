@@ -1,18 +1,9 @@
 import { ref, type Ref } from "vue";
+import { Note } from "./note";
 import { deleteData, loadData, saveData } from "./store";
 
-export interface Note {
-    id: string;
-    title: string;
-    content: string;
-    textOnly?: string;
-    pinned?: boolean;
-    dateCreated: Date | string;
-    dateModified?: Date | string;
-}
 
 const notes: Ref<Note[]> = ref([])
-const note: Ref<Note | null> = ref(null)
 
 export const addNote = async (note: Partial<Note>) => {
     const n = {
@@ -26,13 +17,6 @@ export const addNote = async (note: Partial<Note>) => {
     return n
 }
 
-export const setNote = (n: Note) => {
-    note.value = n
-}
-
-export const getNote = () => {
-    return note
-}
 
 export const deleteNote = async (id: string) => {
     notes.value = notes.value.filter(note => note.id !== id)

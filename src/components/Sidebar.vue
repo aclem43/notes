@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { mdiCog, mdiHome, mdiPlus, mdiThemeLightDark } from '@mdi/js';
+import { mdiCog, mdiFolder, mdiHome, mdiPlus, mdiThemeLightDark } from '@mdi/js';
 import '../assets/sidebar.css';
-import { addNote, setNote } from '../scripts/notes';
+import { setNote } from '../scripts/note';
+import { addNote } from '../scripts/notes';
+
 import { setPage } from '../scripts/page';
 import { switchTheme } from '../scripts/theme';
 import Icon from './Icon.vue';
