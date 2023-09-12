@@ -40,17 +40,18 @@ const filteredNotes = computed(() => {
         })
 
         return [...new Set(pinnedNotes.concat(sortedNotes))]
-    }
-    const filtered = notes.value.filter(note => {
-        if (note.textOnly) {
-            return note.textOnly.toLowerCase().includes(search.value.toLowerCase())
-        }
-        else {
-            return note.title.toLowerCase().includes(search.value.toLowerCase())
-        }
-    })
+    } else {
+        const filtered = notes.value.filter(note => {
+            if (note.textOnly) {
+                return note.textOnly.toLowerCase().includes(search.value.toLowerCase())
+            }
+            else {
+                return note.title.toLowerCase().includes(search.value.toLowerCase())
+            }
+        })
 
-    return [...new Set(pinnedNotes.concat(filtered))]
+        return [...new Set(pinnedNotes.concat(filtered))]
+    }
 })
 
 </script>

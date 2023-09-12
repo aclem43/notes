@@ -15,6 +15,10 @@ const settings = () => {
     setPage('settings')
 }
 
+const folder = () => {
+    setPage("folder")
+}
+
 const newNote = async () => {
     const n = await addNote({})
     setNote(n)
@@ -28,6 +32,9 @@ const newNote = async () => {
         <div class="group">
             <button @click="home">
                 <Icon :icon="mdiHome" />
+            </button>
+            <button @click="folder">
+                <Icon :icon="mdiFolder" />
             </button>
             <button @click="newNote">
                 <Icon :icon="mdiPlus" />

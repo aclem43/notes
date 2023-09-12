@@ -1,6 +1,6 @@
 import { ref, type Ref } from "vue";
 import { Note } from "./note";
-import { deleteData, loadData, saveData } from "./store";
+import { allData, deleteData, loadData, saveData } from "./store";
 
 
 const notes: Ref<Note[]> = ref([])
@@ -65,9 +65,25 @@ export const saveNotes = async () => {
 export const loadNotes = async () => {
     const data = await loadData("notes") ?? "[]"
     const notesMap: { id: string }[] = JSON.parse(data)
-
     for (const note of notesMap) {
         const noteData = await loadData(note.id) ?? "{}"
         notes.value.push(JSON.parse(noteData))
     }
+}
+
+export const reloadNotes = async () => {
+    notes.value = []
+    const data = await allData()
+    if (!data) return
+    console.log(data)
+    for (const file of data) {
+        if (!file.name) continue
+        if (file.name === "notes.json") continue
+        if (file.name.endsWith(".json")) {
+            const noteData = await loadData(file.name.replace(".json", "")) ?? "{}"
+            notes.value.push(JSON.parse(noteData))
+        }
+    }
+    console.log(notes.value)
+    await saveNotes()
 }
