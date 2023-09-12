@@ -2,11 +2,30 @@
 import { computed, ref } from 'vue';
 import '../assets/home.css';
 import NoteSummary from '../components/NoteSummary.vue';
-import { getNotes } from '../scripts/notes';
+import { Note, getNotes } from '../scripts/notes';
 
 const notes = getNotes()
 
 const search = ref("")
+
+const dateModified = (note: Note) => {
+    if (note.dateModified) {
+        if (typeof note.dateModified == "string") {
+            return new Date(note.dateModified)
+        }
+        else {
+            return note.dateModified
+        }
+    }
+    else {
+        if (typeof note.dateCreated == "string") {
+            return new Date(note.dateCreated)
+        }
+        else {
+            return note.dateCreated
+        }
+    }
+}
 
 const filteredNotes = computed(() => {
     const pinnedNotes = []
@@ -14,6 +33,13 @@ const filteredNotes = computed(() => {
         if (note.pinned) {
             pinnedNotes.push(note)
         }
+    }
+    if (search.value === "") {
+        const sortedNotes = notes.value.sort((a, b) => {
+            return dateModified(a).getTime() - dateModified(b).getTime()
+        })
+
+        return [...new Set(pinnedNotes.concat(sortedNotes))]
     }
     const filtered = notes.value.filter(note => {
         if (note.textOnly) {
