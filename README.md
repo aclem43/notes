@@ -4,6 +4,8 @@ This notes app is a very simple app inteneded to replace the default stick notes
 
 ## As of version 0.0.1
 ### Features
+**Version 0.0.1 is Not Completely Functional**
+
 - Basic Dark Mode
 - Simple Editor and saving
 - Pin Notes
@@ -19,3 +21,4 @@ This notes app is a very simple app inteneded to replace the default stick notes
 - Improved editor
 - Add Tags 
 - Add Images
+- Add Folders
