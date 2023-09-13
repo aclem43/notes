@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import "../assets/folder.css";
+</script>
+
 <template>
-    <div></div>
+    <div class="folder-container">
+        To be implemented
+    </div>
 </template>
