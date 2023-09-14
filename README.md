@@ -2,8 +2,20 @@
 This notes app is a very simple app inteneded to replace the default stick notes app in windows
 
 
-## As of version 0.0.1
-### Features
+## Features
+### As of version 0.0.2
+The app is in a useable state but still has some bugs and missing features
+- Improved Dark Mode (Still not great)
+- Added alot of missed features from version 0.0.1 including deleting notes, saving on ctrl+s, and more
+- Added last modified date to notes
+- Added Sort by last modified date by default
+
+*Notes Home View*
+![Homepage for version 0.0.2](resources/0.0.2-Demo.png)
+ *Notes Editor View*
+![Editor for version 0.0.2](resources/0.0.2-Demo2.png)
+
+### As of version 0.0.1
 **Version 0.0.1 is Not Completely Functional**
 
 - Basic Dark Mode
@@ -20,5 +32,5 @@ This notes app is a very simple app inteneded to replace the default stick notes
 - Improved dark mode
 - Improved editor
 - Add Tags 
-- Add Images
+- Improve image saving method
 - Add Folders
