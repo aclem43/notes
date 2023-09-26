@@ -70,19 +70,19 @@ const dateTimeModified = () => {
     const diffYears = diffMonths / 12
 
     if (diffYears >= 1) {
-        return `${Math.floor(diffYears)}y`
+        return `${Math.floor(diffYears)}y ago`
     } else if (diffMonths >= 1) {
-        return `${Math.floor(diffMonths)}mo`
+        return `${Math.floor(diffMonths)}mo ago`
     } else if (diffWeeks >= 1) {
-        return `${Math.floor(diffWeeks)}w`
+        return `${Math.floor(diffWeeks)}w ago`
     } else if (diffDays >= 1) {
-        return `${Math.floor(diffDays)}d`
+        return `${Math.floor(diffDays)}d ago`
     } else if (diffHours >= 1) {
-        return `${Math.floor(diffHours)}h`
+        return `${Math.floor(diffHours)}h ago`
     } else if (diffMinutes >= 1) {
-        return `${Math.floor(diffMinutes)}m`
+        return `${Math.floor(diffMinutes)}m ago`
     } else if (diffSeconds >= 1) {
-        return `${Math.floor(diffSeconds)}s`
+        return `${Math.floor(diffSeconds)}s ago`
     } else {
         return "now"
     }
