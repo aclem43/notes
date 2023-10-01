@@ -1,7 +1,12 @@
 import { BaseDirectory, readDir, readTextFile, removeFile, writeFile } from "@tauri-apps/api/fs";
+import dev from "./dev";
+
+let root = ""
+
+if (dev) root = "dev\\"
 
 export const saveData = async (data: string, location: string, base?: string) => {
-    if (base == undefined) base = "data\\"
+    if (base == undefined) base = `${root}data\\`
     try {
         await writeFile(
             {
@@ -18,7 +23,7 @@ export const saveData = async (data: string, location: string, base?: string) =>
 }
 
 export const loadData = async (location: string, base?: string) => {
-    if (base == undefined) base = "data\\"
+    if (base == undefined) base = `${root}data\\`
     try {
         const data = await readTextFile(
             `.\\${base}${location}.json`,
@@ -34,7 +39,7 @@ export const loadData = async (location: string, base?: string) => {
 }
 
 export const deleteData = async (location: string, base?: string) => {
-    if (base == undefined) base = "data\\"
+    if (base == undefined) base = `${root}data\\`
     try {
         await removeFile(
             `.\\${base}${location}.json`,
@@ -48,7 +53,7 @@ export const deleteData = async (location: string, base?: string) => {
 }
 
 export const allData = async (base?: string) => {
-    if (base == undefined) base = "data\\"
+    if (base == undefined) base = `${root}data\\`
     try {
         const data = await readDir(
             base,

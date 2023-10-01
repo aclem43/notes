@@ -2,10 +2,14 @@
 import { getVersion } from '@tauri-apps/api/app';
 import { onMounted, ref } from "vue";
 import "../assets/settings.css";
+import dev from '../scripts/dev';
 import { reloadNotes } from '../scripts/notes/notes';
 const appVersion = ref('')
 onMounted(async () => {
     appVersion.value = await getVersion();
+    if (dev) {
+        appVersion.value += ' (dev)'
+    }
 
 })
 </script>
