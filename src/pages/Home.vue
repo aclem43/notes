@@ -2,8 +2,8 @@
 import { computed, ref } from 'vue';
 import '../assets/home.css';
 import NoteSummary from '../components/NoteSummary.vue';
-import { type Note } from '../scripts/note';
-import { getNotes } from '../scripts/notes';
+import { type Note } from '../scripts/notes/note';
+import { getNotes } from '../scripts/notes/notes';
 const notes = getNotes()
 
 const search = ref("")

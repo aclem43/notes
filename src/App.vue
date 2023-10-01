@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
 import './assets/global.css';
 import SideBar from './components/Sidebar.vue';
 import { initDataFolder } from './scripts/init';
-import { loadNotes } from './scripts/notes';
+import { loadNotes } from './scripts/notes/notes';
 import page from './scripts/page';
 onMounted(async () => {
     await initDataFolder()

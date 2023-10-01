@@ -1,6 +1,6 @@
 import { ref, type Ref } from "vue";
+import { allData, deleteData, loadData, saveData } from "../store";
 import { Note } from "./note";
-import { allData, deleteData, loadData, saveData } from "./store";
 
 
 const notes: Ref<Note[]> = ref([])
