@@ -5,7 +5,7 @@ let root = ""
 
 if (dev) root = "dev\\"
 
-export const saveData = async (data: string, location: string, base?: string) => {
+export const saveFile = async (data: string, location: string, base?: string) => {
     if (base == undefined) base = `${root}data\\`
     try {
         await writeFile(
@@ -22,7 +22,7 @@ export const saveData = async (data: string, location: string, base?: string) =>
     }
 }
 
-export const loadData = async (location: string, base?: string) => {
+export const loadFile = async (location: string, base?: string) => {
     if (base == undefined) base = `${root}data\\`
     try {
         const data = await readTextFile(
@@ -38,7 +38,7 @@ export const loadData = async (location: string, base?: string) => {
     }
 }
 
-export const deleteData = async (location: string, base?: string) => {
+export const deleteFile = async (location: string, base?: string) => {
     if (base == undefined) base = `${root}data\\`
     try {
         await removeFile(
@@ -52,7 +52,7 @@ export const deleteData = async (location: string, base?: string) => {
     }
 }
 
-export const allData = async (base?: string) => {
+export const allFiles = async (base?: string) => {
     if (base == undefined) base = `${root}data\\`
     try {
         const data = await readDir(
