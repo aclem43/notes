@@ -107,72 +107,75 @@ const isDifferent = () => {
 </script>
 <template>
     <div class="note-container">
-        <div v-if="editor != undefined" class="toolbar">
-            <div class="group">
-                <div class="dropdown">
-                    <button :class="{ 'is-active': isHeaderActive() }">
-                        <Icon :icon="mdiAlphaH" :size="32"></Icon>
+        <div v-if="editor != undefined" class="toolbar-container">
+            <div class="toolbar">
+                <div class="group">
+                    <div class="dropdown">
+                        <button :class="{ 'is-active': isHeaderActive() }">
+                            <Icon :icon="mdiAlphaH" :size="32"></Icon>
+
+                        </button>
+                        <div class="dropdown-content">
+                            <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+                                :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
+                                <Icon :icon="mdiFormatHeader1"></Icon>
+                            </button>
+                            <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+                                :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
+                                <Icon :icon="mdiFormatHeader2"></Icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button>
+                            <Icon :icon="mdiFormatAlignCenter" :size="32"></Icon>
+                        </button>
+                        <div class="dropdown-content">
+                            <button @click="editor.chain().focus().setTextAlign('left').run()"
+                                :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }">
+                                <Icon :icon="mdiFormatAlignLeft"></Icon>
+                            </button>
+                            <button @click="editor.chain().focus().setTextAlign('center').run()"
+                                :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }">
+                                <Icon :icon="mdiFormatAlignCenter"></Icon>
+                            </button>
+                            <button @click="editor.chain().focus().setTextAlign('right').run()"
+                                :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
+                                <Icon :icon="mdiFormatAlignRight"></Icon>
+                            </button>
+                            <button @click="editor.chain().focus().setTextAlign('justify').run()"
+                                :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
+                                <Icon :icon="mdiFormatAlignJustify"></Icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <button @click="editor.chain().focus().toggleBold().run()"
+                        :class="{ 'is-active': editor.isActive('bold') }">
+                        <Icon :icon="mdiFormatBold"></Icon>
+                    </button>
+                    <button @click="editor.chain().focus().toggleItalic().run()"
+                        :class="{ 'is-active': editor.isActive('italic') }">
+                        <Icon :icon="mdiFormatItalic"></Icon>
+                    </button>
+                    <button @click="editor.chain().focus().toggleStrike().run()"
+                        :class="{ 'is-active': editor.isActive('strike') }">
+                        <Icon :icon="mdiFormatStrikethrough"></Icon>
+                    </button>
+                    <button @click="editor.chain().focus().undo().run()" :disabled="!editor.can().undo()">
+                        <Icon :icon="mdiUndo"></Icon>
+                    </button>
+                    <button @click="editor.chain().focus().redo().run()" :disabled="!editor.can().redo()">
+                        <Icon :icon="mdiRedo"></Icon>
 
                     </button>
-                    <div class="dropdown-content">
-                        <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-                            :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
-                            <Icon :icon="mdiFormatHeader1"></Icon>
-                        </button>
-                        <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-                            :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
-                            <Icon :icon="mdiFormatHeader2"></Icon>
-                        </button>
-                    </div>
                 </div>
-                <div class="dropdown">
-                    <button>
-                        <Icon :icon="mdiFormatAlignCenter" :size="32"></Icon>
+                <div class="group">
+                    <button :disabled="!isDifferent()" @click="save">
+                        <Icon :icon="mdiFloppy"> </Icon>
                     </button>
-                    <div class="dropdown-content">
-                        <button @click="editor.chain().focus().setTextAlign('left').run()"
-                            :class="{ 'is-active': editor.isActive({ textAlign: 'left' }) }">
-                            <Icon :icon="mdiFormatAlignLeft"></Icon>
-                        </button>
-                        <button @click="editor.chain().focus().setTextAlign('center').run()"
-                            :class="{ 'is-active': editor.isActive({ textAlign: 'center' }) }">
-                            <Icon :icon="mdiFormatAlignCenter"></Icon>
-                        </button>
-                        <button @click="editor.chain().focus().setTextAlign('right').run()"
-                            :class="{ 'is-active': editor.isActive({ textAlign: 'right' }) }">
-                            <Icon :icon="mdiFormatAlignRight"></Icon>
-                        </button>
-                        <button @click="editor.chain().focus().setTextAlign('justify').run()"
-                            :class="{ 'is-active': editor.isActive({ textAlign: 'justify' }) }">
-                            <Icon :icon="mdiFormatAlignJustify"></Icon>
-                        </button>
-                    </div>
                 </div>
-                <div class="divider"></div>
-                <button @click="editor.chain().focus().toggleBold().run()"
-                    :class="{ 'is-active': editor.isActive('bold') }">
-                    <Icon :icon="mdiFormatBold"></Icon>
-                </button>
-                <button @click="editor.chain().focus().toggleItalic().run()"
-                    :class="{ 'is-active': editor.isActive('italic') }">
-                    <Icon :icon="mdiFormatItalic"></Icon>
-                </button>
-                <button @click="editor.chain().focus().toggleStrike().run()"
-                    :class="{ 'is-active': editor.isActive('strike') }">
-                    <Icon :icon="mdiFormatStrikethrough"></Icon>
-                </button>
-                <button @click="editor.chain().focus().undo().run()" :disabled="!editor.can().undo()">
-                    <Icon :icon="mdiUndo"></Icon>
-                </button>
-                <button @click="editor.chain().focus().redo().run()" :disabled="!editor.can().redo()">
-                    <Icon :icon="mdiRedo"></Icon>
-
-                </button>
-            </div>
-            <div class="group">
-                <button :disabled="!isDifferent()" @click="save">
-                    <Icon :icon="mdiFloppy"> </Icon>
-                </button>
             </div>
         </div>
         <bubble-menu :editor="editor" :tippy-options="{ duration: 100 }" v-if="editor">

@@ -1,8 +1,8 @@
 [package]
 name = "notes"
 version = "0.0.3"
-description = "A Tauri App"
-authors = ["you"]
+description = "notes"
+authors = ["aclem43"]
 license = ""
 repository = ""
 edition = "2021"

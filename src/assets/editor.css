@@ -1,6 +1,16 @@
 @import url("./var.css");
 
 /* Toolbar */
+.toolbar-container {
+    display: flex;
+    align-content: center;
+    z-index: 10;
+    width: calc(100%-40px);
+    padding: 4px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+}
 
 .toolbar {
     display: flex;
@@ -10,7 +20,6 @@
     border: 1px solid var(--border);
     border-radius: 2px;
     background-color: var(--background-secondary);
-    margin: 0 4px;
 }
 
 .toolbar button {
@@ -132,10 +141,11 @@
 /* Tip Tap */
 
 .tiptap {
+    margin-top: 35px;
     padding: 6px;
     border: none;
     outline: none;
-    height: 100%;
+    height: calc(100%-35px);
     cursor: text;
     color: var(--text);
 }
