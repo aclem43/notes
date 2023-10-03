@@ -1,6 +1,7 @@
 import { ref, type Ref } from "vue";
-import { allFiles, deleteFile, loadFile, saveFile } from "../files";
+import { deleteFile } from "../files";
 import { Note } from "./note";
+import { loadNotes, saveNote } from "./save";
 
 
 const notes: Ref<Note[]> = ref([])
@@ -44,42 +45,24 @@ export const getNotes = () => {
 export const generateId = () => {
     return Date.now().toString(36) + Math.floor(Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)).toString(36)
 }
+export const isValidID = (id?: string) => {
+    if (!id) return false
+    return id.length == 17
+}
+
 
 export const saveNotes = async () => {
-    const notesMap: { id: string }[] = []
     for (const note of notes.value) {
-        notesMap.push({
-            id: note.id
-        })
-    }
-    await saveFile(JSON.stringify(notesMap), "notes")
-    for (const note of notes.value) {
-        await saveFile(JSON.stringify(note), note.id)
+        await saveNote(note)
     }
 }
 
-export const loadNotes = async () => {
-    const data = await loadFile("notes") ?? "[]"
-    const notesMap: { id: string }[] = JSON.parse(data)
-    for (const note of notesMap) {
-        const noteData = await loadFile(note.id) ?? "{}"
-        notes.value.push(JSON.parse(noteData))
-    }
+
+export const initalLoad = async () => {
+    notes.value = await loadNotes() ?? []
 }
 
 export const reloadNotes = async () => {
     notes.value = []
-    const data = await allFiles()
-    if (!data) return
-    console.log(data)
-    for (const file of data) {
-        if (!file.name) continue
-        if (file.name === "notes.json") continue
-        if (file.name.endsWith(".json")) {
-            const noteData = await loadFile(file.name.replace(".json", "")) ?? "{}"
-            notes.value.push(JSON.parse(noteData))
-        }
-    }
-    console.log(notes.value)
-    await saveNotes()
+    await initalLoad()
 }
