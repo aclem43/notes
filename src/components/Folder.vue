@@ -1,3 +1,13 @@
+<script setup lang="ts">
+
+defineProps(["name"])
+
+
+
+</script>
+
 <template>
-    <div></div>
+    <div class="folder">
+        {{ name }}
+    </div>
 </template>

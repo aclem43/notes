@@ -2,11 +2,31 @@
 
 .folder-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: center;
+    gap: 10px;
     height: 100%;
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
     overflow: auto;
     color: var(--text);
+}
+
+.folder {
+    border: 1px solid;
+    border-color: var(--border);
+    border-radius: 4px;
+    background-color: var(--background-secondary);
+    padding: 10px;
+    height: 100px;
+    aspect-ratio: 1;
+    text-align: center;
+}
+
+.folder:hover {
+    background-color: var(--hover);
+    cursor: pointer;
+
 }

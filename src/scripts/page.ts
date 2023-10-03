@@ -1,6 +1,6 @@
 import { shallowRef } from 'vue';
 import Editor from '../pages/Editor.vue';
-import Folder from '../pages/Folder.vue';
+import Folder from '../pages/Folders.vue';
 import Home from '../pages/Home.vue';
 import Settings from '../pages/Settings.vue';
 
