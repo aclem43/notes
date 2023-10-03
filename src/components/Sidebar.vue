@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { mdiCog, mdiFolder, mdiHome, mdiPlus, mdiThemeLightDark } from '@mdi/js';
 import '../assets/sidebar.css';
-import { setNote } from '../scripts/note';
-import { addNote } from '../scripts/notes';
+import { setNote } from '../scripts/notes/note';
+import { addNote } from '../scripts/notes/notes';
 
 import { setPage } from '../scripts/page';
 import { switchTheme } from '../scripts/theme';
