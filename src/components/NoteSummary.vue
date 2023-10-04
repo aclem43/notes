@@ -106,7 +106,6 @@ const dateTimeModified = () => {
                     <PopoverPanel class="summary-menu-panel">
                         <button class="note-summary-button" @click.stop="del">
                             <Icon :size="16" :icon="mdiTrashCan" />
-
                         </button>
                     </PopoverPanel>
                 </Popover>

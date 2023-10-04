@@ -23,6 +23,17 @@
     height: 100px;
     aspect-ratio: 1;
     text-align: center;
+
+}
+
+.folder-icon {
+    color: var(--icon);
+}
+
+.folder-name {
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 .folder:hover {
