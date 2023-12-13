@@ -1,7 +1,6 @@
 import { ref, type Ref } from "vue";
-import { deleteFile } from "../files";
 import { Note } from "./note";
-import { loadNotes, saveNote } from "./save";
+import { loadNotes, removeNote, saveNote } from "./save";
 
 
 const notes: Ref<Note[]> = ref([])
@@ -19,9 +18,10 @@ export const addNote = async (note: Partial<Note>) => {
 }
 
 
-export const deleteNote = async (id: string) => {
-    notes.value = notes.value.filter(note => note.id !== id)
-    await deleteFile(id)
+export const deleteNote = async (note: Note) => {
+    await removeNote(note)
+    await reloadNotes()
+
 }
 
 export const updateNote = (note: Note) => {

@@ -24,7 +24,7 @@ const pin = async () => {
 }
 
 const del = async () => {
-    deleteNote(props.note.id)
+    deleteNote(props.note)
     await saveNotes()
 }
 

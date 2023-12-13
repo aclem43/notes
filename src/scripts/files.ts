@@ -1,9 +1,15 @@
-import { BaseDirectory, createDir, readDir, readTextFile, removeFile, writeFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, createDir, readDir, readTextFile, removeDir, removeFile, writeFile } from "@tauri-apps/api/fs";
 import dev from "./dev";
 
 let root = ""
 
 if (dev) root = "dev\\"
+
+interface FileOpts {
+    base?: string
+    extension?: string
+    fullPath?: boolean
+}
 
 export const newDir = async (location: string, base?: string) => {
     if (base == undefined) base = `${root}data\\`
@@ -20,14 +26,14 @@ export const newDir = async (location: string, base?: string) => {
     }
 }
 
-export const saveFile = async (data: string, location: string, extension?: string, base?: string) => {
-    if (extension == undefined) extension = "json"
-    if (base == undefined) base = `${root}data\\`
+export const saveFile = async (data: string, location: string, opts: FileOpts) => {
+    if (opts.extension == undefined) opts.extension = "json"
+    if (opts.base == undefined) opts.base = `${root}data\\`
     try {
         await writeFile(
             {
                 contents: data,
-                path: `.\\${base}${location}.${extension}`,
+                path: `.\\${opts.base}${location}.${opts.extension}`,
             },
             {
                 dir: BaseDirectory.AppData,
@@ -38,29 +44,39 @@ export const saveFile = async (data: string, location: string, extension?: strin
     }
 }
 
-export const loadFile = async (location: string, extension?: string, base?: string) => {
-    if (extension == undefined) extension = "json"
-    if (base == undefined) base = `${root}data\\`
+export const loadFile = async (location: string, opts: FileOpts) => {
+    if (opts.extension == undefined) opts.extension = "json"
+    if (opts.base == undefined) opts.base = `${root}data\\`
     try {
-        const data = await readTextFile(
-            `.\\${base}${location}.${extension}`,
-            {
-                dir: BaseDirectory.AppData,
-            },
-        );
-        return data;
+        if (opts.fullPath) {
+            const data = await readTextFile(
+                location,
+                {
+                    dir: BaseDirectory.AppData,
+                },
+            );
+            return data;
+        } else {
+            const data = await readTextFile(
+                `.\\${opts.base}${location}.${opts.extension}`,
+                {
+                    dir: BaseDirectory.AppData,
+                },
+            );
+            return data;
+        }
     }
     catch (e) {
         console.log(e);
     }
 }
 
-export const deleteFile = async (location: string, extension?: string, base?: string) => {
-    if (extension == undefined) extension = "json"
-    if (base == undefined) base = `${root}data\\`
+export const deleteFile = async (location: string, opts: FileOpts) => {
+    if (opts.extension == undefined) opts.extension = "json"
+    if (opts.base == undefined) opts.base = `${root}data\\`
     try {
         await removeFile(
-            `.\\${base}${location}.${extension}`,
+            `.\\${opts.base}${location}.${opts.extension}`,
             {
                 dir: BaseDirectory.AppData,
             },
@@ -69,6 +85,32 @@ export const deleteFile = async (location: string, extension?: string, base?: st
         console.log(e);
     }
 }
+
+export const deleteFolder = async (location: string, recursive: boolean, opts: FileOpts) => {
+    if (opts.base == undefined) opts.base = `${root}data\\`
+    try {
+        if (opts.fullPath) {
+            return await removeDir(
+                location,
+                {
+                    dir: BaseDirectory.AppData,
+                    recursive: recursive,
+                },
+            );
+        } else {
+            return await removeDir(
+                `.\\${opts.base}${location}`,
+                {
+                    dir: BaseDirectory.AppData,
+                    recursive: recursive,
+                },
+            );
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 export const allFiles = async (base?: string) => {
     if (base == undefined) base = `${root}data\\`
