@@ -30,7 +30,7 @@
   height: 100%;
   border: none;
   outline: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 4px;
 
 }
@@ -51,22 +51,5 @@
   height: 100%;
   padding: 4px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-
-.content {
-  width: 75%;
-  height: 100%;
-  padding: 4px;
-
-}
-
-.texteditor {
-  background-color: white;
-  padding: 4px;
-  border-radius: 4px;
-  height: 100%;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
