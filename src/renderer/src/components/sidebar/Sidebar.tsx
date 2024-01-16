@@ -1,4 +1,5 @@
-import Folder from "./folder";
+import "../../assets/sidebar.css";
+import Folder from "./Folder";
 
 
 export default function Sidebar(): JSX.Element {
@@ -9,11 +10,9 @@ export default function Sidebar(): JSX.Element {
             </div>
             <div className="pinned-notes">
                 <h3>Pinned</h3>
-                <ol>
-                    <li>Pin 1</li>
-                    <li>Pin 2</li>
-                    <li>Pin 3</li>
-                </ol>
+                <div className="note">Pin 1</div>
+                <div className="note">Pin 2</div>
+                <div className="note">Pin 3</div>
             </div>
             <div className="notes">
                 <Folder />

@@ -17,10 +17,40 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    height: 35px;
-    padding: 4px;
+    align-items: start;
+    height: 40px;
     border-bottom: 1px solid #ccc;
+}
+
+.toolbar-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+}
+
+.toolbar-group button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    padding: 6px 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-group button svg {
+    height: 100%;
+    width: 100%;
+    max-height: 18px;
+}
+
+
+.toolbar-group button:hover {
+    background-color: #ccc;
 }
 
 .text-editor {

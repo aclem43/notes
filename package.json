@@ -23,7 +23,8 @@
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
     "@lexical/react": "^0.12.5",
-    "lexical": "^0.12.5"
+    "lexical": "^0.12.5",
+    "react-icons": "^5.0.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^1.0.1",

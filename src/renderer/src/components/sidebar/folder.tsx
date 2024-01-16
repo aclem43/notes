@@ -1,4 +1,4 @@
-import "../../assets/folder.css";
+// import "../../assets/folder.css";
 
 export default function Folder(): JSX.Element {
     return (
