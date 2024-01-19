@@ -1,0 +1,34 @@
+.folder-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.folder-notes {
+    margin-left: 4px;
+}
+
+.folder {
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+}
+
+.folder-group {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.folder svg:hover {
+    fill: #ccc;
+}
+
+.folder:hover {
+    background-color: #ddd;
+}

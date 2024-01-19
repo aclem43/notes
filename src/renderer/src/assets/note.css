@@ -1,0 +1,17 @@
+.note {
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+
+.pin svg:hover {
+    fill: #ccc;
+}
+
+.note:hover {
+    background-color: #ddd;
+}
