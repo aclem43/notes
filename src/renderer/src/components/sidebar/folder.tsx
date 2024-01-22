@@ -30,7 +30,8 @@ export default function Folder(props: FolderProps) {
             <div className="folder noselect"
                 onClick={() => {
                     setOpen(false);
-                }}
+                }
+                }
             >
                 <div className="folder-group">
                     <BiFolder />
@@ -39,9 +40,11 @@ export default function Folder(props: FolderProps) {
                 <BiChevronUp />
             </div>
             <div className="folder-notes">
-                {notes.map((note) => {
-                    return <Note note={note} />
-                })}
+                {
+                    notes.map((note) => {
+                        return <Note note={note} />
+                    })
+                }
             </div>
         </div>
     );

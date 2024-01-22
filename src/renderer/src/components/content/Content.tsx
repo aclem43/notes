@@ -1,4 +1,4 @@
-import { BiSave } from "react-icons/bi";
+import { BiBold, BiHeading, BiItalic, BiPlus, BiSave, BiTrash } from "react-icons/bi";
 import "../../assets/content.css";
 export default function Content(): JSX.Element {
 
@@ -12,14 +12,14 @@ export default function Content(): JSX.Element {
             <div className="editor">
                 <div className="toolbar">
                     <div className="toolbar-group noselect">
-                        <button>H</button>
-                        <button style={{ fontStyle: 'italic' }}>I</button>
-                        <button>B</button>
+                        <button><BiHeading></BiHeading></button>
+                        <button><BiItalic></BiItalic></button>
+                        <button><BiBold></BiBold></button>
                     </div>
                     <div className="toolbar-group noselect">
-                        <button>1</button>
-                        <button>2</button>
+                        <button><BiPlus></BiPlus></button>
                         <button><BiSave></BiSave></button>
+                        <button><BiTrash></BiTrash></button>
                     </div>
 
                 </div>
