@@ -10,10 +10,9 @@ export default function Content(): JSX.Element {
     return (
         <div className="content">
             <div className="editor">
-
                 <Toolbar></Toolbar>
-            </div>
-            <div className="text-editor" contentEditable="true" onInput={onType} >
+                <div className="text-editor" contentEditable="true" onInput={onType} >
+                </div>
             </div>
         </div>
     )
