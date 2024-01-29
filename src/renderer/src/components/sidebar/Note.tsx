@@ -1,26 +1,35 @@
-import { FileRef } from "@renderer/data/notes";
+import { FileRef, NoteType, loadNote } from "@renderer/data/notes";
 import { BiNote, BiPin } from "react-icons/bi";
 import "../../assets/Note.css";
 
+interface NoteProps {
+    file: FileRef
+    pinned: boolean
+    note: {
+        value: NoteType
+        set: (note: NoteType) => void
+    }
+}
 
-export default function Note(props: { note: FileRef, pinned: boolean }): JSX.Element {
+export default function Note(props: NoteProps): JSX.Element {
 
-    const { note, pinned } = props;
+    const { file, pinned, note } = props;
     const openNote = () => {
-        console.log("Open note")
+        note.set(loadNote(file))
     }
     if (pinned) {
         return (
             <div className="note pin noselect" onClick={openNote}>
                 <BiPin></BiPin>
-                {note.name}
+                {file.name}
+
             </div>
         )
     } else {
         return (
             <div className="note noselect" onClick={openNote}>
                 <BiNote></BiNote>
-                {note.name}
+                {file.name}
             </div>)
     }
 

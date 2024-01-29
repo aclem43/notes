@@ -13,13 +13,13 @@ const dir = (location:string):Files[] => {
     if (file.isDirectory()) return {
       name: file.name,
       type: getFileType(file),
-      path: file.name,
+      path: location+"/"+file.name,
       children: dir(`${location}/${file.name}`)
     }
     return {
       name: file.name,
       type: getFileType(file),
-      path: file.name,
+      path:  location+"/"+file.name,
       children: [] as Files[]
     }
   })

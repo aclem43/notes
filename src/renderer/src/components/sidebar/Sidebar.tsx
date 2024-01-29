@@ -1,12 +1,17 @@
-import { loadNoteReferences } from "@renderer/data/notes";
+import { NoteType, loadNoteReferences } from "@renderer/data/notes";
 import "../../assets/sidebar.css";
 import Folder from "./Folder";
 import Note from "./Note";
 
+interface SidebarProps {
+    note: {
+        value: NoteType
+        set: (note: NoteType) => void
+    }
+}
 
-
-export default function Sidebar(): JSX.Element {
-
+export default function Sidebar(props: SidebarProps): JSX.Element {
+    const { note } = props;
 
 
     return (
@@ -23,9 +28,9 @@ export default function Sidebar(): JSX.Element {
                 {
                     loadNoteReferences().map((file) => {
                         if (file.type === "folder")
-                            return <Folder key={file.path} folder={file}></Folder>
+                            return <Folder key={file.path} note={note} folder={file}></Folder>
                         else
-                            return <Note key={file.path} note={file} pinned={(file.path.includes("pinned")) ? true : false} ></Note>
+                            return <Note key={file.path} note={note} file={file} pinned={(file.path.includes("pinned")) ? true : false} ></Note>
                     })
                 }
             </div>

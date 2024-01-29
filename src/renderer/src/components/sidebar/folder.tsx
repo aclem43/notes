@@ -1,4 +1,4 @@
-import { FileRef } from "@renderer/data/notes";
+import { FileRef, NoteType } from "@renderer/data/notes";
 import { useState } from "react";
 import { BiChevronDown, BiChevronUp, BiFolder } from "react-icons/bi";
 import "../../assets/folder.css";
@@ -6,20 +6,23 @@ import Note from "./Note";
 
 export interface FolderProps {
     folder: FileRef
+    note: {
+        value: NoteType
+        set: (note: NoteType) => void
+    }
 }
 
 export default function Folder(props: FolderProps) {
-    const { folder } = props;
+    const { folder, note } = props;
 
-    console.log("Test")
 
     function generateChildren() {
         if (folder.children != undefined) {
-            return folder.children.map((note) => {
-                if (note.type === "file")
-                    return <Note key={note.path} note={note} pinned={(note.path.includes("pinned")) ? true : false} ></Note>
-                else if (note.type === "folder")
-                    return <Folder key={note.path} folder={note}></Folder>
+            return folder.children.map((file) => {
+                if (file.type === "file")
+                    return <Note key={file.path} note={note} file={file} pinned={(file.path.includes("pinned")) ? true : false} ></Note>
+                else if (file.type === "folder")
+                    return <Folder key={file.path} note={note} folder={file}></Folder>
                 return <></>
             })
         }

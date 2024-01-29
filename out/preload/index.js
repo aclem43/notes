@@ -9,13 +9,13 @@ const dir = (location) => {
       return {
         name: file.name,
         type: getFileType(file),
-        path: file.name,
+        path: location + "/" + file.name,
         children: dir(`${location}/${file.name}`)
       };
     return {
       name: file.name,
       type: getFileType(file),
-      path: file.name,
+      path: location + "/" + file.name,
       children: []
     };
   });
