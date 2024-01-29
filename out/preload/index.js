@@ -27,11 +27,12 @@ const getFileType = (file) => {
     return "file";
   return "other";
 };
+const readFile = (location) => {
+  return fs.readFileSync(location, { encoding: "utf8", flag: "r" });
+};
 const api = {
   dir,
-  readFile: (location) => {
-    return fs.readFileSync(location, { encoding: "utf8", flag: "r" });
-  }
+  readFile
 };
 if (process.contextIsolated) {
   try {

@@ -26,22 +26,20 @@ const dir = (location:string):Files[] => {
 }
 
   
-
-
-
-
 const getFileType = (file:Dirent):FileType => {
   if (file.isDirectory()) return "folder"
   if (file.isFile()) return 'file'
   return "other"
 }
 
+const readFile = (location:string):string => {
+  return readFileSync(location, { encoding: 'utf8', flag: 'r' })
+}
+
 // Custom APIs for renderer
 const api = {
   dir:dir,
-  readFile:(location) => {
-    return readFileSync(location, { encoding: 'utf8', flag: 'r' })
-  }
+  readFile:readFile
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

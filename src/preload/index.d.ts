@@ -8,7 +8,7 @@ declare global {
     electron: ElectronAPI
     api: {
       dir:(location:string) => Files[]
-      readFile:(location:string) => undefined
+      readFile:(location:string) => string
     }
   }
 }
