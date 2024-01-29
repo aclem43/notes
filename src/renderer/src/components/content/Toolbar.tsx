@@ -2,8 +2,15 @@ import { BiBold, BiHeading, BiItalic, BiPlus, BiSave, BiTrash } from "react-icon
 import "../../assets/content/toolbar.css";
 
 
-export default function Toolbar(): JSX.Element {
+interface ContentProps {
+    events: {
+        onSave: () => void
+    }
+}
 
+
+export default function Toolbar(props: ContentProps): JSX.Element {
+    const { events } = props;
     return (
         <div className="toolbar">
             <div className="toolbar-group noselect">
@@ -13,8 +20,8 @@ export default function Toolbar(): JSX.Element {
             </div>
             <div className="toolbar-group noselect">
                 <button><BiPlus></BiPlus></button>
-                <button><BiSave></BiSave></button>
-                <button><BiTrash></BiTrash></button>
+                <button onClick={events.onSave}><BiSave></BiSave></button>
+                <button ><BiTrash></BiTrash></button>
             </div>
         </div>
     )
