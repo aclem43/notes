@@ -7,12 +7,13 @@ type FileType = "folder" | "file" | "other"
 // Custom APIs for renderer
 const api = {
   dir:(location) => {
-    const files = readdirSync(location, { withFileTypes: true })
-    const returnList: {name:string, type:FileType}[] = []
+    const files = readdirSync(location, { recursive:true,withFileTypes: true })
+    const returnList: {name:string, type:FileType, path: string}[] = []
     for (let file of files){
       returnList.push({
         name: file.name,
-        type: getFileType(file)
+        type: getFileType(file),
+        path: file
       })
     }
     return returnList

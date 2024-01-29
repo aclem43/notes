@@ -4,12 +4,13 @@ const preload = require("@electron-toolkit/preload");
 const fs = require("fs");
 const api = {
   dir: (location) => {
-    const files = fs.readdirSync(location, { withFileTypes: true });
+    const files = fs.readdirSync(location, { recursive: true, withFileTypes: true });
     const returnList = [];
     for (let file of files) {
       returnList.push({
         name: file.name,
-        type: getFileType(file)
+        type: getFileType(file),
+        path: file
       });
     }
     return returnList;

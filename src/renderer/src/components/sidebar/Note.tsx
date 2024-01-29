@@ -1,26 +1,9 @@
 import { BiNote, BiPin } from "react-icons/bi";
 import "../../assets/Note.css";
-
-export interface NoteType {
-    title: string,
-    content: string,
-    pinned: boolean,
-    created: Date,
-    modified: Date
-}
-
-export function generateNote(pinned: boolean, name?:string): NoteType {
-    return {
-        title: name ? name: "New Note",
-        content: "",
-        pinned: pinned,
-        created: new Date(),
-        modified: new Date()
-    }
-}
+import { NoteReference } from "@renderer/data/notes";
 
 
-export default function Note(props: { note: NoteType }): JSX.Element {
+export default function Note(props: { note: NoteReference }): JSX.Element {
 
     const { note } = props;
 

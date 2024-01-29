@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { BiChevronDown, BiChevronUp, BiFolder } from "react-icons/bi";
 import "../../assets/folder.css";
-import Note, { NoteType } from "./Note";
+import { FileReference, FolderType } from "@renderer/data/notes";
 
 export interface FolderProps {
-    name: string
-    notes: NoteType[]
+    folder: FolderType
+    files: FileReference[]
 }
 
 export default function Folder(props: FolderProps) {
-    const { notes,name } = props;
+    const { files,folder } = props;
     const [open, setOpen] = useState(false);
     if (!open) return (
         <div className="folder-container">
@@ -20,7 +20,7 @@ export default function Folder(props: FolderProps) {
             >
                 <div className="folder-group">
                     <BiFolder />
-                    <div className="folder-name">{name}</div>
+                    <div className="folder-name">{folder.title}</div>
                 </div>
                 <BiChevronDown />
             </div>
@@ -36,14 +36,14 @@ export default function Folder(props: FolderProps) {
             >
                 <div className="folder-group">
                     <BiFolder />
-                    <div className="folder-name">{name}</div>
+                    <div className="folder-name">{folder.title}</div>
                 </div>
                 <BiChevronUp />
             </div>
             <div className="folder-notes">
                 {
-                    notes.map((note) => {
-                        return <Note note={note} />
+                    files.map((note) => {
+                        return `${JSON.stringify(note)}`
                     })
                 }
             </div>
