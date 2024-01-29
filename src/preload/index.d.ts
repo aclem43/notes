@@ -9,6 +9,7 @@ declare global {
     api: {
       dir:(location:string) => Files[]
       readFile:(location:string) => string
+      writeFile:(location:string, content:string) => void
     }
   }
 }

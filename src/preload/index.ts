@@ -1,6 +1,6 @@
 import { electronAPI } from '@electron-toolkit/preload'
 import { contextBridge } from 'electron'
-import { Dirent, readFileSync, readdirSync } from 'fs'
+import { Dirent, readFileSync, readdirSync, writeFileSync } from 'fs'
 
 type FileType = "folder" | "file" | "other"
 
@@ -20,7 +20,6 @@ const dir = (location:string):Files[] => {
       name: file.name,
       type: getFileType(file),
       path:  location+"/"+file.name,
-      children: [] as Files[]
     }
   })
 }
@@ -35,11 +34,15 @@ const getFileType = (file:Dirent):FileType => {
 const readFile = (location:string):string => {
   return readFileSync(location, { encoding: 'utf8', flag: 'r' })
 }
+const writeFile = (location:string, content:string):void => {
+  writeFileSync(location, content, { encoding: 'utf8', flag: 'w' })
+}
 
 // Custom APIs for renderer
 const api = {
   dir:dir,
-  readFile:readFile
+  readFile:readFile,
+  writeFile: writeFile
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
