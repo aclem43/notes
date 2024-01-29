@@ -1,16 +1,6 @@
 
-export type FileReference = (FolderType | NoteReference)
-
-export interface NoteReference {
-    title: string,
-    path: string,
-    folder: false
-}
-
-export interface FolderType extends Omit<NoteReference,"folder"> {
-    folder: true
-    children: (FolderType | NoteReference)[]
-}
+type FileType = "folder" | "file" | "other"
+export type FileRef = {name:string, type:FileType, path: string, children?:FileRef[]}
 
 export interface NoteType {
     title: string,
@@ -21,29 +11,8 @@ export interface NoteType {
     path: string,
 }
 
-export const loadNoteReferences = (): FileReference[] => {
+export const loadNoteReferences = (): FileRef[] => {
     const dirContents = window.api.dir("./testDir/")
-    const fileReferences: FileReference[] = []
-    for (let content of dirContents){
-        if (content.type == "folder"){
-            fileReferences.push(
-                {
-                    title: content.name,
-                    folder: true,
-                    path: content.path,
-                    children: []
-                }
-            )
-        }
-        else if (content.type == "file") {
-            fileReferences.push(
-                {
-                    title: content.name,
-                    path: content.path,
-                    folder: false
-                }
-            )
-        }
-    }
-    return fileReferences
+    
+    return dirContents
 }

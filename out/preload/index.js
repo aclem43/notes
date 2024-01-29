@@ -1,23 +1,24 @@
 "use strict";
-const electron = require("electron");
 const preload = require("@electron-toolkit/preload");
+const electron = require("electron");
 const fs = require("fs");
-const api = {
-  dir: (location) => {
-    const files = fs.readdirSync(location, { recursive: true, withFileTypes: true });
-    const returnList = [];
-    for (let file of files) {
-      returnList.push({
+const dir = (location) => {
+  const files = fs.readdirSync(location, { withFileTypes: true, recursive: true });
+  return files.map((file) => {
+    if (file.isDirectory())
+      return {
         name: file.name,
         type: getFileType(file),
-        path: file
-      });
-    }
-    return returnList;
-  },
-  readFile: (location) => {
-    return fs.readFileSync(location, { encoding: "utf8", flag: "r" });
-  }
+        path: file.name,
+        children: dir(`${location}/${file.name}`)
+      };
+    return {
+      name: file.name,
+      type: getFileType(file),
+      path: file.name,
+      children: []
+    };
+  });
 };
 const getFileType = (file) => {
   if (file.isDirectory())
@@ -25,6 +26,12 @@ const getFileType = (file) => {
   if (file.isFile())
     return "file";
   return "other";
+};
+const api = {
+  dir,
+  readFile: (location) => {
+    return fs.readFileSync(location, { encoding: "utf8", flag: "r" });
+  }
 };
 if (process.contextIsolated) {
   try {

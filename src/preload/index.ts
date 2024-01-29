@@ -1,33 +1,47 @@
-import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { contextBridge } from 'electron'
 import { Dirent, readFileSync, readdirSync } from 'fs'
 
 type FileType = "folder" | "file" | "other"
 
-// Custom APIs for renderer
-const api = {
-  dir:(location) => {
-    const files = readdirSync(location, { recursive:true,withFileTypes: true })
-    const returnList: {name:string, type:FileType, path: string}[] = []
-    for (let file of files){
-      returnList.push({
-        name: file.name,
-        type: getFileType(file),
-        path: file
-      })
+export type Files = {name:string, type:FileType, path: string, children?:Files[]}
+
+
+const dir = (location:string):Files[] => {
+  const files = readdirSync(location, { withFileTypes: true, recursive: true})
+  return files.map(file => {
+    if (file.isDirectory()) return {
+      name: file.name,
+      type: getFileType(file),
+      path: file.name,
+      children: dir(`${location}/${file.name}`)
     }
-    return returnList
-  },
-  readFile:(location) => {
-    return readFileSync(location, { encoding: 'utf8', flag: 'r' })
-  }
+    return {
+      name: file.name,
+      type: getFileType(file),
+      path: file.name,
+      children: [] as Files[]
+    }
+  })
 }
+
+  
+
+
 
 
 const getFileType = (file:Dirent):FileType => {
   if (file.isDirectory()) return "folder"
   if (file.isFile()) return 'file'
   return "other"
+}
+
+// Custom APIs for renderer
+const api = {
+  dir:dir,
+  readFile:(location) => {
+    return readFileSync(location, { encoding: 'utf8', flag: 'r' })
+  }
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
