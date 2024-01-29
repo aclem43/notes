@@ -9,9 +9,9 @@ export interface NoteType {
     modified: Date
 }
 
-export function generateNote(pinned: boolean): NoteType {
+export function generateNote(pinned: boolean, name?:string): NoteType {
     return {
-        title: "New Note",
+        title: name ? name: "New Note",
         content: "",
         pinned: pinned,
         created: new Date(),

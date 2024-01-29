@@ -4,11 +4,12 @@ import "../../assets/folder.css";
 import Note, { NoteType } from "./Note";
 
 export interface FolderProps {
+    name: string
     notes: NoteType[]
 }
 
 export default function Folder(props: FolderProps) {
-    const { notes } = props;
+    const { notes,name } = props;
     const [open, setOpen] = useState(false);
     if (!open) return (
         <div className="folder-container">
@@ -19,7 +20,7 @@ export default function Folder(props: FolderProps) {
             >
                 <div className="folder-group">
                     <BiFolder />
-                    <div className="folder-name">Folder</div>
+                    <div className="folder-name">{name}</div>
                 </div>
                 <BiChevronDown />
             </div>
@@ -35,7 +36,7 @@ export default function Folder(props: FolderProps) {
             >
                 <div className="folder-group">
                     <BiFolder />
-                    <div className="folder-name">Folder</div>
+                    <div className="folder-name">{name}</div>
                 </div>
                 <BiChevronUp />
             </div>

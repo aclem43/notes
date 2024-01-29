@@ -1,8 +1,33 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { Dirent, readFileSync, readdirSync } from 'fs'
+
+type FileType = "folder" | "file" | "other"
 
 // Custom APIs for renderer
-const api = {}
+const api = {
+  dir:(location) => {
+    const files = readdirSync(location, { withFileTypes: true })
+    const returnList: {name:string, type:FileType}[] = []
+    for (let file of files){
+      returnList.push({
+        name: file.name,
+        type: getFileType(file)
+      })
+    }
+    return returnList
+  },
+  readFile:(location) => {
+    return readFileSync(location, { encoding: 'utf8', flag: 'r' })
+  }
+}
+
+
+const getFileType = (file:Dirent):FileType => {
+  if (file.isDirectory()) return "folder"
+  if (file.isFile()) return 'file'
+  return "other"
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise

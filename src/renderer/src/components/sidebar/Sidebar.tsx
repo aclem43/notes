@@ -23,12 +23,17 @@ export default function Sidebar(): JSX.Element {
             </div>
             <div className="notes">
                 <h3>Notes</h3>
-                <Note note={generateNote(false)} />
-                <Note note={generateNote(false)} />
-                <Note note={generateNote(false)} />
-                <Note note={generateNote(false)} />
-                <Note note={generateNote(false)} />
-                <Folder notes={notes} />
+                {
+                   window.api.dir("./testDir/").map((file) => {
+                        if (file.type == "file")
+                        {
+                            return <Note key={file.name} note={generateNote(false,file.name)} />
+                        }
+                        else if (file.type == "folder") {
+                            return <Folder name={file.name} notes={[]} key={file.name} />
+                        } else return <div > {file.name} </div>
+                    })
+                }
             </div>
         </div>
     )
