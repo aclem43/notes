@@ -15,8 +15,7 @@ const dir = (location) => {
     return {
       name: file.name,
       type: getFileType(file),
-      path: location + "/" + file.name,
-      children: []
+      path: location + "/" + file.name
     };
   });
 };
@@ -30,9 +29,13 @@ const getFileType = (file) => {
 const readFile = (location) => {
   return fs.readFileSync(location, { encoding: "utf8", flag: "r" });
 };
+const writeFile = (location, content) => {
+  fs.writeFileSync(location, content, { encoding: "utf8", flag: "w" });
+};
 const api = {
   dir,
-  readFile
+  readFile,
+  writeFile
 };
 if (process.contextIsolated) {
   try {
