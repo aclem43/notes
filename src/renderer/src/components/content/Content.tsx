@@ -1,8 +1,8 @@
 import { NoteType } from "@renderer/data/notes";
-import "../../assets/content/content.css";
-import Toolbar from "./Toolbar";
 import { useState } from "react";
-
+import "../../assets/content/content.css";
+import TextEditor from "./TextEditor";
+import Toolbar from "./Toolbar";
 interface ContentProps {
     note: {
         value: NoteType
@@ -30,9 +30,7 @@ export default function Content(props: ContentProps): JSX.Element {
         <div className="content">
             <div className="editor">
                 <Toolbar events={{ onSave: save }}></Toolbar>
-                <div className="text-editor" contentEditable="true" onInput={onType} suppressContentEditableWarning={true} >
-                    {note.value.content}
-                </div>
+                <TextEditor></TextEditor>
             </div>
         </div>
     )

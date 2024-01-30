@@ -10,6 +10,7 @@ export interface NoteType {
     path: string,
 }
 
+
 export const generateEmptyNote = (): NoteType => {
     return {
         title: "",
