@@ -13,7 +13,11 @@
     flex-direction: column;
 }
 
-.text-editor {
+.text-editor-parent {
+    height: 100%;
+}
+
+.text-editor-parent div[contenteditable="true"] {
     height: 100%;
     padding: 4px;
 }

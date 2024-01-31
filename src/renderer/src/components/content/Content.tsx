@@ -30,7 +30,9 @@ export default function Content(props: ContentProps): JSX.Element {
         <div className="content">
             <div className="editor">
                 <Toolbar events={{ onSave: save }}></Toolbar>
-                <TextEditor></TextEditor>
+                <div className="text-editor-parent">
+                    <TextEditor></TextEditor>
+                </div>
             </div>
         </div>
     )
